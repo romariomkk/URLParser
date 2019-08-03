@@ -29,8 +29,6 @@ ext {
     jsoup = '1.11.3'
     stetho = '1.5.0'
     supportVer = '1.0.0'
-    rxAndroid = '2.1.0'
-    rxkotlinVer = "2.2.0"
 }
 
 task clean(type: Delete) {
