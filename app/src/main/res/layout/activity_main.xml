@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	
+	<data>
+		
+		<variable
+			name="vm"
+			type="com.romariomkk.urltextparser.view.main.MainViewModel" />
+	</data>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".view.main.MainActivity">
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/tilURL"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginEnd="8dp"
+			android:layout_marginTop="8dp"
+			app:hintAnimationEnabled="true"
+			app:hintEnabled="true"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/tetURL"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:hint="@string/hint_url"
+				android:text="@={vm.queryParams.url}" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/tilSearch"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginEnd="8dp"
+			android:layout_marginTop="8dp"
+			app:hintAnimationEnabled="true"
+			app:hintEnabled="true"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/tilURL">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/tetSearch"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:hint="@string/hint_search"
+				android:text="@={vm.queryParams.searchText}" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/tilThreads"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginEnd="4dp"
+			android:layout_marginTop="8dp"
+			app:hintAnimationEnabled="true"
+			app:hintEnabled="true"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toStartOf="@id/tilLimit"
+			app:layout_constraintTop_toBottomOf="@id/tilSearch">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/tetThreads"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:hint="@string/hint_threads"
+				android:inputType="numberDecimal"
+				android:text="@={`` + vm.queryParams.maxThreads}" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/tilLimit"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="4dp"
+			android:layout_marginEnd="8dp"
+			android:layout_marginTop="8dp"
+			app:hintAnimationEnabled="true"
+			app:hintEnabled="true"
+			app:layout_constraintStart_toEndOf="@id/tilThreads"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/tilSearch">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/tetLimit"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:hint="@string/hint_limit"
+				android:text="@={`` + vm.queryParams.maxURLs}" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<ProgressBar
+			android:id="@+id/pbSearch"
+			style="?android:attr/progressBarStyleHorizontal"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="@dimen/base_margin"
+			android:layout_marginStart="@dimen/base_margin"
+			android:indeterminate="false"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/tilLimit" />
+		
+		<TextView
+			android:id="@+id/tvSearchStatus"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/not_started"
+			android:textSize="16sp"
+			android:textColor="@android:color/darker_gray"
+			app:layout_constraintTop_toBottomOf="@id/pbSearch"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			tools:text="Current status" />
+		
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/rvResults"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/tvSearchStatus"
+			app:layout_constraintBottom_toTopOf="@id/llButtons"
+			tools:listitem="@layout/item_result" />
+		
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/llButtons"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/rvResults">
+			
+			<Button
+				android:id="@+id/btnPauseResume"
+				style="@style/ButtonMain"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="@string/pause"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/btnStop"
+				app:layout_constraintBottom_toBottomOf="parent"
+				android:onClick="@{() -> vm.switchPauseResume()}" />
+			
+			<Button
+				android:id="@+id/btnStop"
+				style="@style/ButtonMain"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="@string/stop"
+				android:visibility="gone"
+				android:onClick="@{() -> vm.stopSearch()}"
+				app:layout_constraintStart_toEndOf="@id/btnPauseResume"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintBottom_toBottomOf="parent" />
+			
+			<Button
+				android:id="@+id/btnStart"
+				style="@style/ButtonMain"
+				android:layout_height="wrap_content"
+				android:layout_width="0dp"
+				android:text="@string/start"
+				android:onClick="@{() -> vm.tryStartParsing()}"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintBottom_toBottomOf="parent" />
+		
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

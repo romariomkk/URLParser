@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <debug-overrides>
+        <trust-anchors>
+            <certificates
+                overridePins="true"
+                src="user" />
+        </trust-anchors>
+    </debug-overrides>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">yahoo.</domain>
+        <domain includeSubdomains="true">192.168.0.146</domain>
+    </domain-config>
+</network-security-config>

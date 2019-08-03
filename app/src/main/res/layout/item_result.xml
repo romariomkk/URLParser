@@ -1,0 +1,80 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<data>
+		
+		<variable
+			name="result"
+			type="com.romariomkk.urltextparser.core.pojo.SearchResult" />
+	</data>
+	
+	<FrameLayout
+		android:id="@+id/flRoot"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@{result}"
+		tools:background="@android:color/holo_blue_dark">
+		
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/base_margin"
+			android:layout_marginEnd="@dimen/base_margin"
+			android:layout_marginTop="4dp"
+			android:layout_marginBottom="4dp"
+			android:background="#fff">
+			
+			<TextView
+				android:id="@+id/tvUrlTitle"
+				android:labelFor="@id/tvUrl"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/base_margin"
+				android:layout_marginTop="@dimen/base_margin"
+				android:text="@string/url_text"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+			
+			<TextView
+				android:id="@+id/tvUrl"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/base_margin"
+				android:layout_marginTop="@dimen/base_margin"
+				android:layout_marginEnd="@dimen/base_margin"
+				android:singleLine="true"
+				android:text="@{result.url}"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@id/tvUrlTitle"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:text="wiki.org" />
+			
+			<TextView
+				android:id="@+id/tvSearchWord"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="@dimen/base_margin"
+				android:layout_marginStart="@dimen/base_margin"
+				android:layout_marginTop="@dimen/base_margin"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/tvUrl"
+				app:matches="@{result}"
+				tools:text="Occurrences of 'Test' : 1107" />
+			
+			<TextView
+				android:id="@+id/tvError"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_margin="@dimen/base_margin"
+				app:error="@{result}"
+				tools:text="Error"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/tvSearchWord" />
+		
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</FrameLayout>
+</layout>

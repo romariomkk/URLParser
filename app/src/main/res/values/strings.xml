@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">URLTextParser</string>
+    <string name="hint_url">URL to browse</string>
+    <string name="hint_search">Search text</string>
+    <string name="hint_limit">Max results</string>
+    <string name="hint_threads">Threads</string>
+	
+    <string name="start">Start</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="stop">Stop</string>
+	<string name="url_text">URL:</string>
+    
+    <string name="error_url">Invalid URL</string>
+    <string name="error_search">Search field must not be empty</string>
+    <string name="error_threads">Thread count must be 1+</string>
+    <string name="error_limit">Result count must be 1+</string>
+    
+    <string name="search_match">Occurrences of \'%s\': %d</string>
+	<string name="not_started">Not started</string>
+    <string name="stopped">Stopped</string>
+    <string name="paused">Paused</string>
+    <string name="resumed">Resumed</string>
+	<string name="no_info">No info</string>
+    <string name="no_errors">No errors</string>
+    <string name="error_format">Error: %s %s</string>
+</resources>
