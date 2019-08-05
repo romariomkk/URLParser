@@ -1,0 +1,2 @@
+# URLParser
+Android app for parallel HTML pages parsing with MVVM(Model layer is light-weight), custom ThreadPoolExecutor, DataBinding (its use has the space for improvement within this project, as view is not as dumb as advised), status RUNNING for a single page is currently uniumplementable as LiveData cannot deliver ALL values from other threads. Some idea on creation of custom LiveData combined with the logic of Rx-Subjects is present.
